@@ -200,13 +200,9 @@ disp(c4);
 %% 题目3
 
 vq = 1:0.2:6;
-vq1 = interp1(V, Pa, vq, "linear");
-figure
-plot(V, Pa, 'o', vq, vq1, '-', LineWidth=2)
-title("气体压强随体积的变化(T=300K)")
-xlabel("体积(m^3)")
-ylabel("压强(KPa)")
+interp1()
 
-%
+
+
 
 
