@@ -54,19 +54,73 @@ z = x .* cos(x);
 
 % 1
 figure()
-plot(x, y, LineWidth=2)
+plot(x, y, 'r', LineWidth=2)
 title('X-Y关系图')
 xlabel('X')
 ylabel('Y')
 % 2
 figure()
-polarplot(x, y, LineWidth=2)
+polarplot(x, y, 'g', LineWidth=2)
 % 3
 figure()
 plot3(x, y, z, LineWidth=2)
 xlim([-10, 80])
 
 %% 题目4
+
+clear;clc;
+
+x = -5:0.5:5;
+y = -5:0.5:5;
+
+[X, Y] = meshgrid(x, y);
+Z = sin(sqrt(X.^2 + Y.^2));
+
+figure('Name','两种不同函数画三维图')
+% (1)
+subplot(2, 1,1);
+mesh(X, Y, Z);
+title("使用mesh绘制的三维图");
+% (2)
+subplot(2, 1, 2);
+surf(X, Y, Z);
+title("使用mesh绘制的三维图");
+% (3)
+figure('name', '给输出着色，使用color尝试不同的颜色');
+colormaps = ["hot", "winter", "cool", "spring"];
+tiledlayout(2,2)
+for i=1:4
+    j = nexttile;
+    surf(X, Y, Z)
+    shading interp;
+    colormap(j, eval(colormaps(i)))
+    title(j, "使用colormaps中的"+colormaps(i), FontSize=15)
+end
+
+% (4)
+figure('name', '绘制Z的等高线图');
+contourf(X, Y, Z, LineWidth=2);
+shading interp
+xlabel('X');
+ylabel('Y');
+zlabel('Z');
+title('Z的等高线');
+
+% (5)
+figure('name', '绘制Z的曲面图并加上等高线图');
+surf(X, Y, Z)
+hold on
+contour3(X, Y, Z, 'LineWidth',2)
+hold off
+
+xlabel('X');
+ylabel('Y');
+zlabel('Z');
+title('Z = sin(sqrt(X^2 + Y^2)) 曲面图 + 等高线');
+colorbar;
+colormap('jet');
+
+%% 题目5
 
 
 
