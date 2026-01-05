@@ -1,4 +1,4 @@
-%% 题目1
+%% ch6 题目1
 
 clear;clc;clf;
 x = -8:1:8;
@@ -122,5 +122,30 @@ colormap('jet');
 
 %% 题目5
 
+x = linspace(-2*pi, 2*pi, 100);
+y = sin(x);
 
+% 1.
+draw = plot(x, y);
+xlabel("X"); ylabel("Sin(x)");
+set(draw,"color", "green", "LineStyle", "-.", "LineWidth", 2);
+
+% 2.
+fg = gcf;
+set(fg, "color", "red", "name", "A Sine Function");
+
+%3.
+tick = gca;
+set(tick, "color", "blue", "XScale", "log");
+
+
+%% ch7 题目1
+clc; clear;
+
+% 1.
+p1 = [1,2,4,0,5];
+p2 = [1,2];
+p3 = [1,2,3];
+
+conv(p2, p3);
 
