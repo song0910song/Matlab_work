@@ -170,6 +170,8 @@ for i=1:3
         result(i, j) = polyval(p,M(i, j));
     end
 end
+disp("x取矩阵M中每个值时，P(x)的值")
+disp(result)
 
 %% 题目2
 
@@ -199,6 +201,8 @@ disp(c4);
 
 %% 题目3
 
+V = [1;2;3;4;5;6];
+Pa = [2494;1247;831;623;499;416];
 vq = 1:0.2:6;
 vq1 = interp1(V, Pa, vq, "linear");
 figure
@@ -207,6 +211,38 @@ title("气体压强随体积的变化(T=300K)")
 xlabel("体积(m^3)")
 ylabel("压强(KPa)")
 
-%
+%% 题目4
 
+V = [1;2;3;4;5;6];
+Pa = [2494;1247;831;623;499;416];
+vq = 1:0.2:6;
+
+figure
+plot(V, Pa, 'o', 'LineWidth',2)
+hold on
+for i=1:4
+    pfit = polyfit(V, Pa, i);
+    y1 = polyval(pfit, V); % 使用拟合函数计算
+    
+    poly1 = polyval(pfit, vq); % 增加数据点
+    draw = plot(vq, poly1, 'LineWidth',2);
+    legend('y','y_1', 'y_1', 'y_3', 'y_4', fontsize=15)
+end
+title("体积-Kpa不同阶数下拟合曲线")
+xlabel("体积(m^3)")
+ylabel("压强(KPa)")
+hold off
+
+%% 题目5
+
+clc; clear;
+N = power(1:1:10, 2);
+n_sqrt = sqrt(N);
+nq = 1:1:100;
+y1 = interp1(N, n_sqrt, nq, 'spline');
+
+plot(N, n_sqrt, '*r', nq, y1, '-b')
+xlabel('N')
+ylabel('sqrt(N)')
+legend('y', 'y_1', fontsize=15)
 
